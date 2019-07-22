@@ -1,5 +1,4 @@
-# docker
-# to run demo run following
+## docker: To run demo run following
 
 $ docker-compose build
 $ docker-compose up
