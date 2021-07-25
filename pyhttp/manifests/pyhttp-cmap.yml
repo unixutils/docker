@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pyhttpcmap
+data:
+  # property-like keys; each key maps to a simple value
+  pyhttpCmKey: "pyhttpCmValue"
+
+  # file-like keys
+  pyhttpCmapFile: |
+    This is an example for configmaps file-like Keys
+    This content comes from pyhttpCmapFile.

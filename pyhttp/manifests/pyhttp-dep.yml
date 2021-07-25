@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyhttp
+spec:
+  selector:
+    matchLabels:
+      app: pyhttp
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: pyhttp
+    spec:
+      containers:
+      - name: pyhttp-container
+        image: unixutils/pyhttp:latest
+
+        ports:
+        - containerPort: 7000
+
+        env:
+        - name: PYHTTP_KEY_FROM_CONFIGMAP
+          valueFrom:
+            configMapKeyRef:
+              name: pyhttpcmap
+              key: pyhttpCmKey
+
+        volumeMounts:
+          - name: pyhttpvolume
+            mountPath: "/pyhttp"
+            readOnly: true
+
+      volumes:
+      - name: pyhttpvolume
+        configMap:
+          name: pyhttpcmap # name of the configmapt that was created
+          items:
+          - key: pyhttpCmapFile # file like key in configmap
+            path: PYHTTP_FILE_FROM_CONFIGMAP # name of the file to mount the value from key as.
+
+
+              
+                 

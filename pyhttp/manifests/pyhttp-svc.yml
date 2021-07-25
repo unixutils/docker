@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyhttp
+spec:
+  type: LoadBalancer
+  selector:
+    app: pyhttp
+  ports:
+    - protocol: TCP
+      port: 7000
