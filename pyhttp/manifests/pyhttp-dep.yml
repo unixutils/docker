@@ -15,22 +15,28 @@ spec:
       containers:
       - name: pyhttp-container
         image: unixutils/pyhttp:latest
-
         ports:
         - containerPort: 7000
-
         env:
         - name: PYHTTP_KEY_FROM_CONFIGMAP
           valueFrom:
             configMapKeyRef:
               name: pyhttpcmap
               key: pyhttpCmKey
-
+        - name: PYHTTP_KEY_FROM_DATA_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pyhttpsecret
+              key: pyhttpDataSecret
+        - name: PYHTTP_KEY_FROM_STRING_DATA_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pyhttpsecret 
+              key: pyhttpStringDataSecret
         volumeMounts:
           - name: pyhttpvolume
             mountPath: "/pyhttp_config/"
             readOnly: true
-
       volumes:
       - name: pyhttpvolume
         configMap:
