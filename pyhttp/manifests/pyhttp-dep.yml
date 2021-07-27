@@ -34,17 +34,21 @@ spec:
               name: pyhttpsecret 
               key: pyhttpStringDataSecret
         volumeMounts:
-          - name: pyhttpvolume
-            mountPath: "/pyhttp_config/"
+          - name: pyhttpvolume-from-configmap
+            mountPath: "/pyhttp_configmap/"
             readOnly: true
+          - name: pyhttpvolume-from-secret
+            mountPath: "/pyhttp_secret/"
       volumes:
-      - name: pyhttpvolume
+      - name: pyhttpvolume-from-configmap
         configMap:
           name: pyhttpcmap # name of the configmapt that was created
           items:
           - key: pyhttpCmapFile # file like key in configmap
             path: PYHTTP_FILE_FROM_CONFIGMAP # name of the file to mount the value from key as.
-
-
-              
-                 
+      - name: pyhttpvolume-from-secret
+        secret: 
+          secretName: pyhttpsecret
+          items:
+           - key: pyhttpStringDataSecretMultiLine
+             path: PYHTTP_FILE_FROM_SECRET

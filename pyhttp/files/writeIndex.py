@@ -6,7 +6,7 @@ import socketserver
 httpPort = 7000
 Handler = http.server.SimpleHTTPRequestHandler
 
-configMapFiles = glob.glob("/pyhttp_config/*PYHTTP*")
+configMapFiles = glob.glob("/pyhttp_*/*PYHTTP*")
 indexFile = ("/pyhttp/index.html")
 open(indexFile, 'a').close()
 
@@ -26,7 +26,7 @@ for i in os.environ:
 ifile.write("\n***Printing file(s) loaded via configmap***\n")
 for file in configMapFiles:
     with open(file, 'r') as f:
-        ifile.write("contents of configmap file: " + file + '\n')
+        ifile.write("\ncontents of configmap file: " + file + '\n')
         for line in f.readlines():
             ifile.write(line)
 
