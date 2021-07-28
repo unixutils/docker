@@ -15,6 +15,7 @@ spec:
       containers:
       - name: pyhttp-container
         image: unixutils/pyhttp:latest
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 7000
         env:
@@ -39,6 +40,8 @@ spec:
             readOnly: true
           - name: pyhttpvolume-from-secret
             mountPath: "/pyhttp_secret/"
+          - name: pyhttp-projected-volume
+            mountPath: "/pyhttp_projected_volume"
       volumes:
       - name: pyhttpvolume-from-configmap
         configMap:
@@ -52,3 +55,16 @@ spec:
           items:
            - key: pyhttpStringDataSecretMultiLine
              path: PYHTTP_FILE_FROM_SECRET
+      - name: pyhttp-projected-volume
+        projected:
+          sources:
+          - secret: 
+              name: pyhttpsecret
+              items:
+               - key: pyhttpStringDataSecretMultiLine
+                 path: PYHTTP_FILE_FROM_SECRET
+          - configMap:
+              name: pyhttpcmap
+              items:
+               - key: pyhttpCmapFile
+                 path: PYHTTP_FILE_FROM_CONFIGMAP
