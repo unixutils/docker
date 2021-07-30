@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: localstorage-pv
+spec:
+  capacity:
+    storage: 5Mi
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: "/mylocalpath"
+  persistentVolumeReclaimPolicy: Retain
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/forLocalStorageDemo
+          operator: In
+          values:
+          - "true"
