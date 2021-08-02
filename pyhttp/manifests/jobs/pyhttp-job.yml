@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pyhttp-job
+spec:
+  completions: 5
+  template:
+    spec:
+      containers:
+      - name: pyhttp
+        image: centos
+        command: ["curl"]
+        args: ["$(PYHTTP_SERVICE_HOST):$(PYHTTP_SERVICE_PORT)"]
+      nodeSelector:
+        isMaster: "True"
+      restartPolicy: Never
+  backoffLimit: 4
