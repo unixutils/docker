@@ -1,6 +1,8 @@
 # Kubernetes Jobs
 Jobs are similar to other kubernetes objects such as pods or deployments, but Jobs are run only once. For each job one pod is assigned (unless the pod fails). For instance, if a job spec is created to run 10 jobs, 10 pods are assigned. Once a job is completed, the pods created for the jobs need to be cleaned up manually. 
 
+In this example, we run a cURL request on the already running PyHTP service. We make use of the environmental variables that Kubernetes adds to each pod of the cluster, of all the service names and the ports, to construct the cURL command.
+
 ## .spec.completions
 Defines how many jobs need to be scheduled. For instance if this value is set to 5, 5 pods are assigned for execution.
 
