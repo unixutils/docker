@@ -8,6 +8,7 @@ The topics added here are examples leading to PyHTTP as a project for demonstrat
 
 - [Deployments](https://github.com/unixutils/docker/tree/master/pyhttp/manifests/deployments)
 - [Services](https://github.com/unixutils/docker/tree/master/pyhttp/manifests/services)
+- [Jobs](https://github.com/unixutils/docker/tree/master/pyhttp/manifests/jobs)
 - [Config](https://github.com/unixutils/docker/tree/master/pyhttp/manifests/config)
 - [Storage](https://github.com/unixutils/docker/tree/master/pyhttp/manifests/storage)
-- [Files](https://github.com/unixutils/docker/tree/master/pyhttp/files)
+- [Application Files](https://github.com/unixutils/docker/tree/master/pyhttp/files)
