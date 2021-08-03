@@ -4,6 +4,7 @@ metadata:
   name: pyhttp-job
 spec:
   completions: 5
+  parallelism: 5
   template:
     spec:
       containers:
