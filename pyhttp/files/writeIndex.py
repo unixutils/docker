@@ -22,7 +22,7 @@ for i in os.environ:
     if 'PYHTTP_KEY' in i:
         ifile.write(i + '=' + os.environ[i] + '\n')
 
-# FILES MOUNTED FROM CONFIGMAPS
+# FILES MOUNTED FROM CONFIGMAPS AND SECRETS
 ifile.write("\n***Printing file(s) loaded via configmap***\n")
 for file in configMapFiles:
     with open(file, 'r') as f:
