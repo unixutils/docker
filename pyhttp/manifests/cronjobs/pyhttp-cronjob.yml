@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pyhttp-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: centos:7
+            imagePullPolicy: IfNotPresent
+            command: ["curl"]
+            args: ["$(PYHTTP_SERVICE_HOST):$(PYHTTP_SERVICE_PORT)"]
+          restartPolicy: OnFailure
