@@ -5,10 +5,10 @@ Schedules for cronjob takes the same syntax as in a crontab.
 
 In this example, we run a cURL request on the already running PyHTP service. We make use of the environmental variables that Kubernetes adds to each pod of the cluster, of all the service names and the ports, to construct the cURL command. This cURL command is scheduled to run every minute.
 
-## Schedule
+## .spec.schedule
 Defines the schedule for the job to run.
 
-## Schedule syntax
+**Schedule syntax :**
 
 
     ┌───────────── minute (0 - 59)
@@ -25,16 +25,16 @@ Defines the schedule for the job to run.
     # schedule: "30 12 10 * *" 
 
 
-## startingDeadlineSeconds
+## .spec.startingDeadlineSeconds
 When a cronjob cannot start as per schedule (for reasons such as, previous job is still running or a downtime) the job will be reattempted continuously until *startingDeadlineSeconds* is reached. If this value is not set, the default behaviour is that if the missed schedules reaches 100, then the reattempts will stop.
 
-## concurrencyPolicy
+## .spec.concurrencyPolicy
 Options: "Allow", "Forbid", "Replace", to define weather two schedules can overlap, in case the previous one is still running.
 
-## successfulJobsHistoryLimit
+## .spec.successfulJobsHistoryLimit
 Defines how many successful jobs to be held back in history. Setting it to 0 cleans up job history soon after the job is completed.
 
-## failedJobsHistoryLimit
+## .spec.failedJobsHistoryLimit
 Defines how many failed jobs to be held back in history. Setting it to 0 cleans up job history soon after the job has failed.
 
 ## Key points:
