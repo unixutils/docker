@@ -2,10 +2,11 @@
 import os, glob
 import http.server
 import socketserver
+import tempfile
 
+lock = tempfile.NamedTemporaryFile(mode='w+b', prefix="pyhttpLockFile_", dir="/pyhttp")
 httpPort = 7000
 Handler = http.server.SimpleHTTPRequestHandler
-
 configMapFiles = glob.glob("/pyhttp_*/*PYHTTP*")
 indexFile = ("/pyhttp/index.html")
 open(indexFile, 'a').close()

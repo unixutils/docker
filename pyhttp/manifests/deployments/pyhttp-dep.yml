@@ -44,6 +44,23 @@ spec:
             mountPath: "/pyhttp_projected_volume"
           - name: pyhttp-persistent-volume-claim
             mountPath: "/pyhttp_persistent_volume_from_claim"
+        startupProbe:
+          exec:
+            command:
+            - /pyhttp/k8sProbes.py
+            - isStarted
+        readinessProbe:
+          exec:
+            command:
+            - /pyhttp/k8sProbes.py
+            - isReady
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 7000
+          initialDelaySeconds: 5
+          periodSeconds: 10
       volumes:
       - name: pyhttpvolume-from-configmap
         configMap:
