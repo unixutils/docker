@@ -12,6 +12,7 @@ spec:
       labels:
         app: pyhttp
     spec:
+      serviceAccountName: pyhttp-admin
       containers:
       - name: pyhttp-container
         image: unixutils/pyhttp:latest
